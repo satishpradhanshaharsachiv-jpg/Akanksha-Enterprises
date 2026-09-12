@@ -1,0 +1,6 @@
+{
+  "name": "Akanksha Enterprises",
+  "description": "आकांक्षा इंटरप्राईजेस (Akanksha Enterprises) अधिकृत व्यावसायिक संकेतस्थळ व सेवा केंद्र",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
