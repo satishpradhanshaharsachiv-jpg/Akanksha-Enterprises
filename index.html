@@ -1,21 +1,832 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Akanksha Enterprises | आकांक्षा इंटरप्राईजेस - Chhatrapati Sambhajinagar</title>
-    <meta name="description" content="आकांक्षा इंटरप्राईजेस (Akanksha Enterprises) - अधिकृत MSME नोंदणीकृत (UDYAM-MH-04-0147670). बांधकाम, दुरुस्ती, मेंटेनन्स आणि कॉम्प्युटर व आयटी सेवा." />
-    <meta property="og:title" content="Akanksha Enterprises | आकांक्षा इंटरप्राईजेस" />
-    <meta property="og:description" content="बांधकाम, दुरुस्ती, मेंटेनन्स आणि कॉम्प्युटर व आयटी सेवा. अधिकृत MSME उद्योग नोंदणीकृत." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
+```html
+<!DOCTYPE html>
+<html lang="mr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>आकांक्षा इंटरप्राईजेस - नागरिक सेवा केंद्र</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & Noto Sans Devanagari -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gov: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        },
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans Devanagari', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.4); border-radius: 10px; }
 
+        .phone-frame {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 12px #0f172a, 0 0 0 14px #334155;
+            border-radius: 40px;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col items-center justify-center p-0 sm:p-4 transition-colors duration-300">
+
+    <!-- Mode Switcher Header -->
+    <div class="w-full max-w-md hidden sm:flex items-center justify-between mb-3 text-slate-300 text-xs px-2">
+        <div class="flex items-center gap-2">
+            <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse"></span>
+            <span class="font-medium text-slate-200">आकांक्षा इंटरप्राईजेस Android Portal</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <button onclick="toggleDeviceFrame()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition flex items-center gap-1.5">
+                <i class="fa-solid fa-mobile-screen"></i>
+                <span id="frameBtnText">फ्रेम बदल करा</span>
+            </button>
+            <button onclick="toggleDarkMode()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 p-1.5 rounded-lg border border-slate-700 transition">
+                <i class="fa-solid fa-moon text-amber-400"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <div id="phoneWrapper" class="w-full max-w-md h-screen sm:h-[840px] bg-slate-50 dark:bg-slate-900 phone-frame relative overflow-hidden flex flex-col transition-all duration-300 sm:rounded-[40px] border-0 sm:border-8 border-slate-800">
+
+        <!-- Android Status Bar -->
+        <div class="bg-slate-900 text-white px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold select-none z-30 shrink-0">
+            <span id="androidClock">10:30</span>
+            <div class="w-4 h-4 bg-black rounded-full hidden sm:block shadow-inner"></div>
+            <div class="flex items-center space-x-2 text-[11px]">
+                <i class="fa-solid fa-signal text-emerald-400"></i>
+                <i class="fa-solid fa-wifi text-emerald-400"></i>
+                <div class="flex items-center gap-1">
+                    <span>92%</span>
+                    <i class="fa-solid fa-battery-full text-emerald-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Android App Bar Header -->
+        <header class="bg-gradient-to-r from-orange-600 via-amber-600 to-orange-700 text-white px-4 py-3 flex items-center justify-between z-20 shrink-0 shadow-md">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-2xl bg-white text-orange-600 flex items-center justify-center font-bold text-xl shadow-inner border border-orange-200">
+                    <i class="fa-solid fa-landmark"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-base leading-tight">आकांक्षा इंटरप्राईजेस</h1>
+                    <p class="text-[11px] text-orange-100 flex items-center gap-1">
+                        <i class="fa-solid fa-circle-check text-emerald-300"></i> महा-ई-सेवा व नागरिक सुविधा केंद्र
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-1">
+                <button onclick="openTab('contact')" class="p-2 hover:bg-white/10 rounded-full transition relative" title="हेल्पलाईन">
+                    <i class="fa-solid fa-headset text-lg"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN SCROLLABLE CONTENT -->
+        <main id="mainContainer" class="flex-1 overflow-y-auto p-4 space-y-4 relative pb-20">
+
+            <!-- TAB 1: HOME (मुख्य पान) -->
+            <section id="tab-home" class="tab-content space-y-4">
+
+                <!-- Welcome Banner Card -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-5 shadow-lg relative overflow-hidden border border-slate-700">
+                    <div class="absolute -right-6 -bottom-6 opacity-10 text-9xl text-amber-500">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+                    <span class="bg-orange-500/30 text-orange-300 border border-orange-500/50 px-3 py-0.5 rounded-full text-[11px] font-semibold tracking-wide inline-block mb-2">
+                        सरकारी योजना व ई-सेवा केंद्र
+                    </span>
+                    <h2 class="text-lg font-bold">नमस्कार! सर्व सरकारी कामे एकाच छताखाली.</h2>
+                    <p class="text-xs text-slate-300 mt-1 leading-relaxed">नवीन योजनांचे अर्ज, उत्पन्नाचे दाखले, कास्ट सर्टिफिकेट व ई-मित्र सेवांसाठी संपर्क साधा.</p>
+                    
+                    <div class="mt-4 pt-3 border-t border-slate-700/80 flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-1.5 text-amber-400">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>सकाळी ९:०० ते संध्याकाळी ८:००</span>
+                        </div>
+                        <button onclick="openTab('booking')" class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded-xl text-xs font-semibold transition">
+                            टोकन घ्या
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Bar for Schemes -->
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                    <input id="schemeSearch" type="text" onkeyup="searchSchemes()" placeholder="योजना किंवा दाखला शोधा (उदा. लाडकी बहीण, उत्पन्न दाखला...)" class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl pl-9 pr-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-orange-500 text-slate-800 dark:text-slate-100 shadow-sm">
+                </div>
+
+                <!-- Quick Services Grid -->
+                <div>
+                    <h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">प्रमुख सेवा (Popular Services)</h3>
+                    <div class="grid grid-cols-4 gap-2 text-center">
+                        <div onclick="openSchemeModal('लाडकी बहीण योजना')" class="bg-white dark:bg-slate-800 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm cursor-pointer hover:border-orange-500 transition flex flex-col items-center">
+                            <div class="w-10 h-10 rounded-xl bg-pink-500/10 text-pink-600 flex items-center justify-center text-lg mb-1">
+                                <i class="fa-solid fa-person-breastfeeding"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold leading-tight text-slate-800 dark:text-slate-200">लाडकी बहीण</span>
+                        </div>
+
+                        <div onclick="openSchemeModal('उत्पन्नाचा दाखला')" class="bg-white dark:bg-slate-800 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm cursor-pointer hover:border-orange-500 transition flex flex-col items-center">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-lg mb-1">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold leading-tight text-slate-800 dark:text-slate-200">उत्पन्न दाखला</span>
+                        </div>
+
+                        <div onclick="openSchemeModal('पीएम शेतकरी सन्मान')" class="bg-white dark:bg-slate-800 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm cursor-pointer hover:border-orange-500 transition flex flex-col items-center">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-lg mb-1">
+                                <i class="fa-solid fa-wheat-awn"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold leading-tight text-slate-800 dark:text-slate-200">पीएम किसान</span>
+                        </div>
+
+                        <div onclick="openSchemeModal('जातीचा दाखला (Cast Cert)')" class="bg-white dark:bg-slate-800 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm cursor-pointer hover:border-orange-500 transition flex flex-col items-center">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center text-lg mb-1">
+                                <i class="fa-solid fa-id-card"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold leading-tight text-slate-800 dark:text-slate-200">जाती दाखला</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Yojana Assistant Banner -->
+                <div class="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl p-4 text-white shadow-md flex items-center justify-between">
+                    <div class="space-y-1 max-w-[70%]">
+                        <span class="bg-white/20 text-[10px] px-2 py-0.5 rounded-full font-medium">AI मदतगार</span>
+                        <h4 class="font-bold text-xs">कोणत्या योजनेसाठी तुम्ही पात्र आहात?</h4>
+                        <p class="text-[11px] text-purple-100">तुमचे वय व उत्पन्न सांगा, AI तुम्हाला योग्य योजना सुचवेल.</p>
+                    </div>
+                    <button onclick="openTab('ai')" class="bg-white text-purple-700 font-bold px-3 py-2 rounded-xl text-xs shadow hover:bg-purple-50 transition">
+                        विचारा <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+
+                <!-- Updates & News Alert -->
+                <div class="bg-amber-50 dark:bg-slate-800 border border-amber-200 dark:border-slate-700 p-3.5 rounded-2xl flex items-start space-x-3">
+                    <div class="p-2 bg-amber-500 text-white rounded-xl text-xs shrink-0 mt-0.5">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-amber-900 dark:text-amber-300">महत्त्वाची टीप</h4>
+                        <p class="text-xs text-amber-800 dark:text-slate-300 mt-0.5">ई-केवायसी (e-KYC) करण्यासाठी तुमचा आधार नंबर मोबाईल नंबरशी लिंक असणे आवश्यक आहे.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: SCHEMES LIST (सरकारी योजना सूची) -->
+            <section id="tab-schemes" class="tab-content hidden space-y-3">
+                <div class="flex items-center justify-between">
+                    <h2 class="font-bold text-sm text-slate-800 dark:text-white">सर्व सरकारी योजना व दाखले</h2>
+                    <span class="text-[11px] text-slate-500" id="schemeCountText">८ योजना उपलब्ध</span>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex gap-2 overflow-x-auto no-scrollbar py-1 text-xs shrink-0">
+                    <button onclick="filterSchemesCategory('all')" class="bg-orange-600 text-white px-3 py-1.5 rounded-full whitespace-nowrap font-medium">सर्व</button>
+                    <button onclick="filterSchemesCategory('महिला')" class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-orange-100 font-medium">महिला योजना</button>
+                    <button onclick="filterSchemesCategory('शेतकरी')" class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-orange-100 font-medium">शेतकरी योजना</button>
+                    <button onclick="filterSchemesCategory('दाखले')" class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-orange-100 font-medium">दाखले व दाखले</button>
+                    <button onclick="filterSchemesCategory('विद्यार्थी')" class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-orange-100 font-medium">विद्यार्थी</button>
+                </div>
+
+                <!-- Schemes Dynamic List Container -->
+                <div id="schemesContainer" class="space-y-2.5">
+                    <!-- Cards injected by JS -->
+                </div>
+            </section>
+
+            <!-- TAB 3: STATUS TRACKER (अर्जाची स्थिती) -->
+            <section id="tab-status" class="tab-content hidden space-y-4">
+                <div>
+                    <h2 class="font-bold text-sm text-slate-800 dark:text-white">अर्जाची स्थिती तपासा (Track Application)</h2>
+                    <p class="text-xs text-slate-500">आकांक्षा इंटरप्राईजेस मधून दिलेल्या पोच पावतीचा नंबर टाका.</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3 shadow-sm">
+                    <div>
+                        <label class="text-xs text-slate-500 dark:text-slate-400 block mb-1">अर्ज क्र. / Token ID</label>
+                        <input id="tokenInput" type="text" placeholder="उदा. AK2026-8891" class="w-full bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    </div>
+                    <button onclick="trackStatus()" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2.5 rounded-xl text-xs transition">
+                        स्थिती तपासा
+                    </button>
+                </div>
+
+                <!-- Results Box -->
+                <div id="statusResult" class="hidden bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-2">
+                        <span class="text-xs font-bold text-slate-800 dark:text-white" id="resName">अर्जदार: सुनीता पाटील</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-bold" id="resBadge">प्रक्रियेत आहे</span>
+                    </div>
+
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between text-slate-500">
+                            <span>योजनेचे नाव:</span>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200" id="resScheme">मुख्यमंत्री लाडकी बहीण योजना</span>
+                        </div>
+                        <div class="flex justify-between text-slate-500">
+                            <span>अर्जाची तारीख:</span>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200" id="resDate">१० मार्च २०२६</span>
+                        </div>
+                        <div class="flex justify-between text-slate-500">
+                            <span>अंदाजित पूर्णता:</span>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200">२ ते ३ दिवस</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar Steps -->
+                    <div class="pt-2">
+                        <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                            <div class="bg-emerald-500 h-full w-3/4 rounded-full"></div>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mt-1 text-right">७५% काम पूर्ण</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: AI SEVA MITRA (योजना AI असिस्टंट) -->
+            <section id="tab-ai" class="tab-content hidden space-y-3 flex-col h-full">
+                <div class="bg-gradient-to-r from-purple-700 to-indigo-800 text-white p-3 rounded-2xl shadow-md flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xs">योजना मार्गदर्शक AI</h3>
+                            <p class="text-[10px] text-purple-200">आकांक्षा इंटरप्राईजेस डिजिटल साहाय्यक</p>
+                        </div>
+                    </div>
+                    <button onclick="clearChatHistory()" class="text-xs text-purple-200 hover:text-white px-2 py-1">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> रिसेट
+                    </button>
+                </div>
+
+                <!-- Chat Window -->
+                <div id="chatWindow" class="bg-white dark:bg-slate-800/90 rounded-2xl border border-slate-200 dark:border-slate-700 p-3 flex-1 overflow-y-auto space-y-3 min-h-[350px] max-h-[440px]">
+                    <div class="flex items-start space-x-2">
+                        <div class="w-7 h-7 rounded-lg bg-orange-600 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+                        <div class="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100 text-xs p-3 rounded-2xl rounded-tl-none max-w-[85%] leading-relaxed">
+                            नमस्कार! मी आकांक्षा इंटरप्राईजेसचा AI सेवा मित्र आहे. तुम्हाला कोणत्या योजनेची माहिती किंवा आवश्यक कागदपत्रांची यादी हवी आहे?
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prompt Chips -->
+                <div class="flex gap-1.5 overflow-x-auto py-1 text-[11px] no-scrollbar shrink-0">
+                    <button onclick="fillPrompt('लाडकी बहीण योजनेसाठी काय कागदपत्रे लागतात?')" class="bg-slate-200 dark:bg-slate-700 hover:bg-orange-100 text-slate-700 dark:text-slate-200 px-2.5 py-1 rounded-full whitespace-nowrap transition">
+                        📄 लाडकी बहीण कागदपत्रे
+                    </button>
+                    <button onclick="fillPrompt('उत्पन्नाचा दाखला कसा काढावा?')" class="bg-slate-200 dark:bg-slate-700 hover:bg-orange-100 text-slate-700 dark:text-slate-200 px-2.5 py-1 rounded-full whitespace-nowrap transition">
+                        📜 उत्पन्न दाखला
+                    </button>
+                    <button onclick="fillPrompt('पीएम शेतकरी सन्मान योजनेची पात्रता काय आहे?')" class="bg-slate-200 dark:bg-slate-700 hover:bg-orange-100 text-slate-700 dark:text-slate-200 px-2.5 py-1 rounded-full whitespace-nowrap transition">
+                        🌾 पीएम शेतकरी पात्रता
+                    </button>
+                </div>
+
+                <!-- Chat Input Box -->
+                <div class="flex items-center gap-2 bg-white dark:bg-slate-800 p-1.5 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm shrink-0">
+                    <input id="chatInput" type="text" onkeypress="if(event.key==='Enter') sendChatMessage()" placeholder="सरकारी योजनेबद्दल विचारा..." class="flex-1 bg-transparent px-3 py-2 text-xs focus:outline-none text-slate-800 dark:text-slate-100">
+                    <button onclick="sendChatMessage()" class="bg-orange-600 hover:bg-orange-700 text-white w-9 h-9 rounded-xl flex items-center justify-center transition shrink-0">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- TAB 5: CONTACT & BOOKING (संपर्क व अपॉइंटमेंट) -->
+            <section id="tab-contact" class="tab-content hidden space-y-4">
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3 shadow-sm">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-2xl bg-orange-500/10 text-orange-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-shop"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-800 dark:text-white">आकांक्षा इंटरप्राईजेस</h3>
+                            <p class="text-xs text-slate-500">अधिकृत महा-ई-सेवा केंद्र</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 text-xs border-t border-slate-100 dark:border-slate-700 pt-3 text-slate-600 dark:text-slate-300">
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot text-orange-500 mt-0.5"></i>
+                            <span>पत्ता: शॉप क्र. ४, मेन रोड, बस स्टँड जवळ, छत्रपती संभाजीनगर, महाराष्ट्र.</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-emerald-500"></i>
+                            <span>मोबाईल: +91 98765 43210</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-blue-500"></i>
+                            <span>ईमेल: akanksha.enterprises@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 pt-2">
+                        <a href="tel:9876543210" class="bg-emerald-600 text-white text-center py-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-phone"></i> कॉल करा
+                        </a>
+                        <a href="https://wa.me/919876543210" target="_blank" class="bg-emerald-500 text-white text-center py-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> व्हॉट्सॲप
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Appointment / Token Booking Card -->
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3 shadow-sm">
+                    <h3 class="font-bold text-xs text-slate-800 dark:text-white">ऑनलाईन अपॉइंटमेंट / टोकन बुक करा</h3>
+                    <p class="text-[11px] text-slate-500">रांगेत न थांबता वेळेवर सेवा मिळवण्यासाठी टोकन घ्या.</p>
+
+                    <div class="space-y-2">
+                        <input id="bookName" type="text" placeholder="तुमचे नाव" class="w-full bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-100">
+                        <select id="bookService" class="w-full bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-100">
+                            <option value="लाडकी बहीण योजना">लाडकी बहीण योजना</option>
+                            <option value="उत्पन्नाचा दाखला">उत्पन्नाचा दाखला</option>
+                            <option value="जातीचा दाखला">जातीचा दाखला</option>
+                            <option value="इतर ई-सेवा">इतर ई-सेवा</option>
+                        </select>
+                        <input id="bookDate" type="date" class="w-full bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-100">
+                    </div>
+
+                    <button onclick="bookToken()" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2.5 rounded-xl text-xs transition">
+                        टोकन निश्चित करा
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Android Bottom Navigation Bar -->
+        <nav class="bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-700 px-2 py-1.5 flex justify-around items-center absolute bottom-0 left-0 right-0 z-30 shrink-0">
+            <button onclick="openTab('home')" id="nav-home" class="nav-item flex flex-col items-center py-1 px-3 text-orange-600 dark:text-orange-400 transition">
+                <i class="fa-solid fa-house text-base"></i>
+                <span class="text-[10px] font-medium mt-0.5">मुख्य पान</span>
+            </button>
+
+            <button onclick="openTab('schemes')" id="nav-schemes" class="nav-item flex flex-col items-center py-1 px-3 text-slate-400 hover:text-slate-600 transition">
+                <i class="fa-solid fa-folder-open text-base"></i>
+                <span class="text-[10px] font-medium mt-0.5">योजना</span>
+            </button>
+
+            <button onclick="openTab('status')" id="nav-status" class="nav-item flex flex-col items-center py-1 px-3 text-slate-400 hover:text-slate-600 transition">
+                <i class="fa-solid fa-magnifying-glass-chart text-base"></i>
+                <span class="text-[10px] font-medium mt-0.5">स्थिती</span>
+            </button>
+
+            <button onclick="openTab('ai')" id="nav-ai" class="nav-item flex flex-col items-center py-1 px-3 text-slate-400 hover:text-slate-600 transition">
+                <i class="fa-solid fa-robot text-base"></i>
+                <span class="text-[10px] font-medium mt-0.5">AI मदत</span>
+            </button>
+
+            <button onclick="openTab('contact')" id="nav-contact" class="nav-item flex flex-col items-center py-1 px-3 text-slate-400 hover:text-slate-600 transition">
+                <i class="fa-solid fa-address-book text-base"></i>
+                <span class="text-[10px] font-medium mt-0.5">संपर्क</span>
+            </button>
+        </nav>
+
+        <!-- SCHEME DETAILS MODAL -->
+        <div id="schemeModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+            <div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-5 space-y-4 shadow-2xl max-h-[85vh] overflow-y-auto">
+                <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-2">
+                    <h3 class="font-bold text-sm text-slate-800 dark:text-white" id="modalTitle">योजनेची माहिती</h3>
+                    <button onclick="closeSchemeModal()" class="text-slate-400 hover:text-slate-600 text-lg">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <h4 class="font-bold text-orange-600 dark:text-orange-400 mb-1">योजनेचे स्वरूप व फायदे:</h4>
+                        <p id="modalBenefit" class="text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-orange-600 dark:text-orange-400 mb-1">आवश्यक कागदपत्रे (Documents Needed):</h4>
+                        <ul id="modalDocs" class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300"></ul>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-slate-700 p-2.5 rounded-xl border border-amber-200 dark:border-slate-600">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300">सरकारी फी / सेवा शुल्क: <span id="modalFee" class="font-bold text-slate-900 dark:text-white">₹५० - ₹१००</span></p>
+                    </div>
+                </div>
+
+                <div class="pt-2 flex gap-2">
+                    <button onclick="closeSchemeModal()" class="flex-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 py-2.5 rounded-xl font-semibold text-xs">बंद करा</button>
+                    <button onclick="applyForScheme()" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white py-2.5 rounded-xl font-semibold text-xs">अर्जासाठी संपर्क करा</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification Popover -->
+        <div id="toast" class="absolute top-16 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs px-4 py-2 rounded-full shadow-lg z-50 hidden border border-slate-700 flex items-center space-x-2">
+            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            <span id="toastMessage">संदेश</span>
+        </div>
+
+    </div>
+
+    <script>
+        // --- DATA OBJECTS FOR GOVT SCHEMES ---
+        const schemesData = [
+            {
+                id: 1,
+                title: "मुख्यमंत्री लाडकी बहीण योजना",
+                category: "महिला",
+                benefit: "पात्र महिलांना दरमहा ₹१,५०० रुपयांची थेट आर्थिक मदत बँक खात्यात दिली जाते.",
+                docs: ["आधार कार्ड", "रहिवासी दाखला / डोमिसाईल", "उत्पन्नाचा दाखला (२.५ लाखांपर्यंत)", "बँक पासबुक", "हमीपत्र व पासपोर्ट फोटो"],
+                fee: "₹५०"
+            },
+            {
+                id: 2,
+                title: "उत्पन्नाचा दाखला (Income Cert)",
+                category: "दाखले",
+                benefit: "१ वर्ष किंवा ३ वर्षांचा तहसीलदारांचा उत्पन्नाचा अधिकृत दाखला मिळतो.",
+                docs: ["आधार कार्ड", "रेशन कार्ड प्रत", "तलाठी उत्पन्न अहवाल / फॉर्म १६", "स्वयंघोषणा पत्र"],
+                fee: "₹५०"
+            },
+            {
+                id: 3,
+                title: "पीएम शेतकरी सन्मान निधी (PM Kisan)",
+                category: "शेतकरी",
+                benefit: "शेतकऱ्यांना वर्षाला ₹६,००० (३ हप्त्यांमध्ये) शेतीकामासाठी मदत.",
+                docs: ["७/१२ आणि ८-अ उतारा", "आधार कार्ड", "बँक पासबुक", "e-KYC पूर्ण असणे गरजेचे"],
+                fee: "₹४०"
+            },
+            {
+                id: 4,
+                title: "जातीचा दाखला (Caste Certificate)",
+                category: "दाखले",
+                benefit: "शासकीय सवलती, शिष्यवृत्ती आणि आरक्षणाचा लाभ घेण्यासाठी.",
+                docs: ["अर्जदाराचे आधार व शाळा सोडल्याचा दाखला", "वडिलांचा शाळा सोडल्याचा दाखला/जातीचा पुरावा", "१९६७ पूर्वीचा पुरावा", "रेशन कार्ड"],
+                fee: "₹१००"
+            },
+            {
+                id: 5,
+                title: "आयुष्मान भारत कार्ड (₹५ लाख विमा)",
+                category: "महिला",
+                benefit: "पन्नास लाखांपर्यंत मोफत उपचारासाठी दरवर्षी प्रति कुटुंब ₹५ लाखांचा आरोग्य विमा.",
+                docs: ["रेशन कार्ड (पिवळे/केशरी)", "आधार कार्ड", "मोबाईल नंबर"],
+                fee: "₹३०"
+            },
+            {
+                id: 6,
+                title: "नमो शेतकरी महासन्मान योजना",
+                category: "शेतकरी",
+                benefit: "महाराष्ट्र शासनातर्फे पीएम किसान व्यतिरिक्त अतिरिक्त ₹६,००० दरवर्षी.",
+                docs: ["पीएम किसान नोंदणी क्रमांक", "७/१२ उतारा", "आधार लिंक बँक खाते"],
+                fee: "₹३०"
+            },
+            {
+                id: 7,
+                title: "महाडीबीटी शिष्यवृत्ती (Scholarship)",
+                category: "विद्यार्थी",
+                benefit: "शाळा व कॉलेज विद्यार्थ्यांसाठी शैक्षणिक फी माफी व थेट शिष्यवृत्ती.",
+                docs: ["उत्पन्न दाखला", "जातीचा दाखला", "मागील वर्षाची मार्कशीट", "बँक खाते व आधार"],
+                fee: "₹६०"
+            },
+            {
+                id: 8,
+                title: "ई-श्रम कार्ड (E-Shram)",
+                category: "दाखले",
+                benefit: "असंघटित कामगारांसाठी शासकीय सुरक्षा व अपघात विमा योजना.",
+                docs: ["आधार कार्ड", "बँक पासबुक", "मोबाईल नंबर"],
+                fee: "₹३०"
+            }
+        ];
+
+        let activeCategory = 'all';
+
+        // --- INITIALIZATION ---
+        window.addEventListener('DOMContentLoaded', () => {
+            updateClock();
+            setInterval(updateClock, 1000);
+            renderSchemes();
+        });
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('androidClock').textContent = `${hours}:${minutes}`;
+        }
+
+        // --- SCHEMES RENDERING & SEARCH ---
+        function renderSchemes(data = schemesData) {
+            const container = document.getElementById('schemesContainer');
+            container.innerHTML = '';
+
+            let filtered = data;
+            if (activeCategory !== 'all') {
+                filtered = data.filter(s => s.category === activeCategory);
+            }
+
+            document.getElementById('schemeCountText').textContent = `${filtered.length} योजना उपलब्ध`;
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="text-center py-6 text-xs text-slate-400">कोणतीही योजना सापडली नाही.</div>`;
+                return;
+            }
+
+            filtered.forEach(s => {
+                const card = document.createElement('div');
+                card.className = "bg-white dark:bg-slate-800 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between hover:border-orange-500 transition cursor-pointer";
+                card.onclick = () => openSchemeModal(s.title);
+                
+                card.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-600 dark:text-orange-400 flex items-center justify-center font-bold text-lg shrink-0">
+                            <i class="fa-solid fa-file-contract"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xs text-slate-800 dark:text-slate-100">${s.title}</h4>
+                            <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">${s.benefit}</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs pl-2"></i>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterSchemesCategory(cat) {
+            activeCategory = cat;
+            renderSchemes();
+        }
+
+        function searchSchemes() {
+            const query = document.getElementById('schemeSearch').value.toLowerCase();
+            const filtered = schemesData.filter(s => 
+                s.title.toLowerCase().includes(query) || 
+                s.benefit.toLowerCase().includes(query)
+            );
+            renderSchemes(filtered);
+            if(query) openTab('schemes');
+        }
+
+        // --- SCHEME MODAL LOGIC ---
+        function openSchemeModal(schemeTitle) {
+            const scheme = schemesData.find(s => s.title.includes(schemeTitle) || schemeTitle.includes(s.title)) || schemesData[0];
+            
+            document.getElementById('modalTitle').textContent = scheme.title;
+            document.getElementById('modalBenefit').textContent = scheme.benefit;
+            document.getElementById('modalFee').textContent = scheme.fee;
+
+            const docsUl = document.getElementById('modalDocs');
+            docsUl.innerHTML = '';
+            scheme.docs.forEach(doc => {
+                const li = document.createElement('li');
+                li.textContent = doc;
+                docsUl.appendChild(li);
+            });
+
+            document.getElementById('schemeModal').classList.remove('hidden');
+        }
+
+        function closeSchemeModal() {
+            document.getElementById('schemeModal').classList.add('hidden');
+        }
+
+        function applyForScheme() {
+            closeSchemeModal();
+            openTab('contact');
+            showToast("अर्ज प्रक्रियेसाठी केंद्राशी संपर्क साधा!");
+        }
+
+        // --- STATUS TRACKER MOCK ---
+        function trackStatus() {
+            const token = document.getElementById('tokenInput').value.trim();
+            if (!token) {
+                showToast("कृपया अर्ज क्र. टाका!");
+                return;
+            }
+
+            document.getElementById('statusResult').classList.remove('hidden');
+            showToast("अर्जाची स्थिती प्राप्त झाली");
+        }
+
+        // --- TOKEN BOOKING ---
+        function bookToken() {
+            const name = document.getElementById('bookName').value;
+            const service = document.getElementById('bookService').value;
+            
+            if(!name) {
+                showToast("कृपया तुमचे नाव टाका!");
+                return;
+            }
+
+            showToast(`टोकन यशस्वी! सेवा: ${service}`);
+            document.getElementById('bookName').value = '';
+        }
+
+        // --- NAVIGATION TABS ---
+        function openTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            const targetTab = document.getElementById(`tab-${tabName}`);
+            if (targetTab) {
+                targetTab.classList.remove('hidden');
+                if (tabName === 'ai') targetTab.classList.add('flex');
+            }
+
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.classList.remove('text-orange-600', 'dark:text-orange-400');
+                btn.classList.add('text-slate-400');
+            });
+
+            const activeBtn = document.getElementById(`nav-${tabName}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-400');
+                activeBtn.classList.add('text-orange-600', 'dark:text-orange-400');
+            }
+        }
+
+        // --- TOGGLE FRAME & DARK MODE ---
+        let showFrame = true;
+        function toggleDeviceFrame() {
+            const wrapper = document.getElementById('phoneWrapper');
+            const btnText = document.getElementById('frameBtnText');
+            showFrame = !showFrame;
+
+            if (showFrame) {
+                wrapper.classList.add('sm:h-[840px]', 'phone-frame', 'sm:rounded-[40px]', 'sm:border-8');
+                wrapper.classList.remove('sm:h-screen', 'sm:rounded-none', 'sm:border-0');
+                btnText.textContent = "फ्रेम लपवा";
+            } else {
+                wrapper.classList.remove('sm:h-[840px]', 'phone-frame', 'sm:rounded-[40px]', 'sm:border-8');
+                wrapper.classList.add('sm:h-screen', 'sm:rounded-none', 'sm:border-0');
+                btnText.textContent = "फ्रेम दाखवा";
+            }
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        // --- GEMINI AI INTEGRATION ---
+        async function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const userMsg = input.value.trim();
+            if (!userMsg) return;
+
+            appendMessage(userMsg, 'user');
+            input.value = '';
+
+            const loadingId = appendLoadingBubble();
+
+            try {
+                const systemPrompt = "तुमचे नाव 'आकांक्षा इंटरप्राईजेस AI योजना मित्र' आहे. तुम्ही महाराष्ट्रातील सरकारी योजना, महा-ई-सेवा, कागदपत्रे आणि उत्पन्नाच्या दाखल्यांविषयी सोप्या मराठीत मार्गदर्शन करता.";
+                const apiKey = ""; // Handled automatically by Canvas host environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: userMsg }] }],
+                        systemInstruction: { parts: [{ text: systemPrompt }] }
+                    })
+                });
+
+                const data = await response.json();
+                removeLoadingBubble(loadingId);
+
+                if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
+                    appendMessage(data.candidates[0].content.parts[0].text, 'bot');
+                } else {
+                    appendMessage("क्षमस्व, उत्तर मिळवण्यात अडचण आली. पुन्हा विचारून पहा.", 'bot');
+                }
+            } catch (err) {
+                removeLoadingBubble(loadingId);
+                appendMessage("इंटरनेट कनेक्शन तपासणी करा.", 'bot');
+            }
+        }
+
+        function fillPrompt(text) {
+            document.getElementById('chatInput').value = text;
+            openTab('ai');
+        }
+
+        function appendMessage(text, sender) {
+            const chatWindow = document.getElementById('chatWindow');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `flex items-start space-x-2 ${sender === 'user' ? 'justify-end' : ''}`;
+
+            if (sender === 'bot') {
+                msgDiv.innerHTML = `
+                    <div class="w-7 h-7 rounded-lg bg-orange-600 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">
+                        <i class="fa-solid fa-landmark"></i>
+                    </div>
+                    <div class="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100 text-xs p-3 rounded-2xl rounded-tl-none max-w-[85%] leading-relaxed whitespace-pre-wrap">${text}</div>
+                `;
+            } else {
+                msgDiv.innerHTML = `
+                    <div class="bg-orange-600 text-white text-xs p-3 rounded-2xl rounded-tr-none max-w-[85%] leading-relaxed">${text}</div>
+                    <div class="w-7 h-7 rounded-lg bg-slate-300 dark:bg-slate-600 text-slate-700 dark:text-slate-200 flex items-center justify-center text-xs shrink-0 mt-0.5">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                `;
+            }
+
+            chatWindow.appendChild(msgDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function appendLoadingBubble() {
+            const chatWindow = document.getElementById('chatWindow');
+            const id = 'loading-' + Date.now();
+            const msgDiv = document.createElement('div');
+            msgDiv.id = id;
+            msgDiv.className = "flex items-start space-x-2";
+            msgDiv.innerHTML = `
+                <div class="w-7 h-7 rounded-lg bg-orange-600 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">
+                    <i class="fa-solid fa-landmark"></i>
+                </div>
+                <div class="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100 text-xs p-3 rounded-2xl rounded-tl-none flex items-center space-x-1">
+                    <span class="w-2 h-2 bg-orange-500 rounded-full animate-bounce"></span>
+                    <span class="w-2 h-2 bg-orange-500 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                    <span class="w-2 h-2 bg-orange-500 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                </div>
+            `;
+            chatWindow.appendChild(msgDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            return id;
+        }
+
+        function removeLoadingBubble(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function clearChatHistory() {
+            document.getElementById('chatWindow').innerHTML = `
+                <div class="flex items-start space-x-2">
+                    <div class="w-7 h-7 rounded-lg bg-orange-600 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">
+                        <i class="fa-solid fa-landmark"></i>
+                    </div>
+                    <div class="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100 text-xs p-3 rounded-2xl rounded-tl-none max-w-[85%] leading-relaxed">
+                        चॅट इतिहास साफ झाला! नवीन प्रश्न विचारा.
+                    </div>
+                </div>
+            `;
+            showToast("चॅट साफ केले गेले");
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => { toast.classList.add('hidden'); }, 2500);
+        }
+    </script>
+</body>
+</html>
+```
