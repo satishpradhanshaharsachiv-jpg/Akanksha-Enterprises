@@ -1,3 +1,4 @@
+import { AIChat } from './components/AIChat';
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
@@ -140,5 +141,6 @@ export default function App() {
         lang={lang}
       />
     </div>
+ <AIChat lang={lang} />
   );
 }
